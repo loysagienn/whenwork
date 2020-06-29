@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "app/*": [ "app/*", "app/*/index.mjs" ],
+      "config": [ "config/production.mjs" ],
+      "env/*": [ "server/*" ]
+    },
+    "module": "commonJS",
+    "target": "esnext",
+    "moduleResolution": "classic",
+    "jsx": "react"
+  },
+  "exclude": ["node_modules", "lib", "static"]
+}

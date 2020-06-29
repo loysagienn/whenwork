@@ -1,0 +1,16 @@
+export const banana = 'dev banana';
+
+export const INSTANCE_ID_COOKIE_NAME = 'instance_id';
+export const DOMAIN = 'wweb.pro';
+export const HTTP_PORT = 3456;
+
+export const CDN_URLS = {
+    REACT: 'https://unpkg.com/react@16/umd/react.development.js',
+    REACT_DOM: 'https://unpkg.com/react-dom@16/umd/react-dom.development.js',
+    REDUX: 'https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js',
+    RAMDA: 'https://cdnjs.cloudflare.com/ajax/libs/ramda/0.27.0/ramda.js',
+    REACT_REDUX: 'https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.0/react-redux.js',
+    REDUX_THUNK: 'https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.js',
+};
+
+export const IS_PRODUCTION = false;
