@@ -34,7 +34,9 @@ module.exports = (api) => {
 
     if (isBabel) {
         plugins.push(['module-resolver', moduleResolverConfig({ isBabel: true })]);
-        plugins.push('@babel/plugin-transform-modules-commonjs');
+        plugins.push(['@babel/plugin-transform-modules-commonjs', {
+            // noInterop: true,
+        }]);
         plugins.push(cssModulesTransform);
     }
 

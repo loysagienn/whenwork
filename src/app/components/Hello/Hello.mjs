@@ -1,4 +1,6 @@
-import React, { useCallback } from 'react';
+/** @jsx createElement */
+
+import { createElement, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectColor } from 'app/selectors';
 import { changeColor } from 'app/actions';
