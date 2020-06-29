@@ -9,8 +9,8 @@ const bodyStyle = 'background-color: #ffffff;';
 
 const bundleRoot = '/static/';
 
-const serverRenderingOn = always(IS_PRODUCTION);
-// const serverRenderingOn = () => true;
+// const serverRenderingOn = always(IS_PRODUCTION);
+const serverRenderingOn = () => true;
 
 const renderAppContent = compose(renderToString, renderApp, getStore);
 

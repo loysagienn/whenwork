@@ -1,5 +1,9 @@
+import { generateRandomColor } from 'app/utils';
+
 const withInitialState = async (koaCtx, next) => {
-    const initialState = {};
+    const initialState = {
+        color: generateRandomColor(),
+    };
 
     koaCtx.state.initialState = initialState;
 
