@@ -19,7 +19,7 @@ const Hello = () => {
             onClick={onClick}
         >
             <div>
-                Hello World
+                When work
             </div>
         </div>
     );

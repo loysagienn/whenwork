@@ -2,10 +2,10 @@ export * from './common';
 
 export const IS_PRODUCTION = true;
 export const IS_DEVELOPMENT = false;
-export const DOMAIN = 'wweb.pro';
-export const HTTP_PORT = 3456;
+export const DOMAIN = 'whenwork.info';
+export const HTTP_PORT = 3457;
 export const DB_URL = 'mongodb://127.0.0.1:27017';
-export const DB_ID = 'hello_world';
+export const DB_ID = 'whenwork';
 
 export const CDN_URLS = {
     REACT: 'https://unpkg.com/react@16/umd/react.production.min.js',
