@@ -6,8 +6,10 @@ const srcRoot = path.resolve(__dirname, '../src');
 const libRoot = path.resolve(__dirname, '../lib');
 
 const commonAlias = (root) => ({
-    config: path.resolve(root, 'config', isProductionMode ? 'production' : 'development'),
     app: path.resolve(root, 'app'),
+    config: path.resolve(root, 'config', isProductionMode ? 'production' : 'development'),
+    client: path.resolve(root, 'client'),
+    server: path.resolve(root, 'server'),
 });
 
 const serverAlias = (root) => ({

@@ -1,4 +1,4 @@
-// import withSession from './withSession';
+import withSession from './withSession';
 import withRoute from './withRoute';
 // import authStrava from './strava/authStrava';
 // import withAthleteId from './withAthleteId';
@@ -19,7 +19,7 @@ const addKoaMiddlewares = (koaServer) => {
     koaServer.use(handleInstance);
     koaServer.use(sendStatic);
     // добавляем koaCtx.state.session
-    // koaServer.use(withSession);
+    koaServer.use(withSession);
     // добавляем koaCtx.state.route
     koaServer.use(withRoute);
     // обработка запроса авторизации в strava

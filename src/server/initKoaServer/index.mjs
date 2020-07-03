@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
+import { getDbInstance } from 'server/db';
 import addKoaMiddlewares from './addKoaMiddlewares';
 
 const logServerStart = (httpPort) => console.log(
@@ -7,10 +8,13 @@ const logServerStart = (httpPort) => console.log(
     `\n--------------- server start on port ${httpPort} ---------------\n`,
 );
 
-const initKoaServer = ({ httpPort, instanceId }) => {
+const initKoaServer = async ({ httpPort, instanceId }) => {
     const koaServer = new Koa();
 
+    const db = await getDbInstance();
+
     koaServer.context.instanceId = instanceId;
+    koaServer.context.db = db;
 
     koaServer.use(bodyParser());
 
