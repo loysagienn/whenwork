@@ -4,11 +4,11 @@ import {
     createElement, Component, createRef,
 } from 'react';
 import { cn } from 'app/utils';
+import { addWindowEvent, removeWindoEvent } from 'env/browser';
+import { remove } from 'ramda';
 import css from './Endless.styl';
 import Item from './Item';
 
-const ADD_SPACE = 300;
-const REMOVE_SPACE = 600;
 const CONTAINER_PADDING = 1000;
 const MAX_MOVE_COUNT = 5;
 
@@ -38,12 +38,17 @@ class Endless extends Component {
 
         this.saveTopOfFirstItems();
         this.updateIndex();
+        addWindowEvent('resize', this.onScroll);
     }
 
     componentDidUpdate() {
         this.updateScroll();
         this.saveTopOfFirstItems();
         this.updateIndex();
+    }
+
+    componentWillUnmount() {
+        removeWindoEvent('resize', this.onScroll);
     }
 
     getItemRef(index) {
@@ -79,21 +84,23 @@ class Endless extends Component {
         let newEndIndex = endIndex;
 
         const { offsetHeight, scrollHeight, scrollTop } = this.ref.current;
+        const addSpace = offsetHeight * 1.5;
+        const removeSpace = addSpace * 2;
 
         const topSpace = scrollTop - CONTAINER_PADDING;
         const bottomSpace = scrollHeight - offsetHeight - scrollTop - CONTAINER_PADDING;
 
-        if (bottomSpace < ADD_SPACE) {
-            newEndIndex += getMoveCount(ADD_SPACE - bottomSpace, ADD_SPACE);
+        if (bottomSpace < addSpace) {
+            newEndIndex += getMoveCount(addSpace - bottomSpace, addSpace);
 
-            if (topSpace > REMOVE_SPACE) {
-                newStartIndex += getMoveCount(topSpace - REMOVE_SPACE, REMOVE_SPACE);
+            if (topSpace > removeSpace) {
+                newStartIndex += getMoveCount(topSpace - removeSpace, removeSpace);
             }
-        } else if (topSpace < ADD_SPACE) {
-            newStartIndex -= getMoveCount(ADD_SPACE - topSpace, ADD_SPACE);
+        } else if (topSpace < addSpace) {
+            newStartIndex -= getMoveCount(addSpace - topSpace, addSpace);
 
-            if (bottomSpace > REMOVE_SPACE) {
-                newEndIndex -= getMoveCount(bottomSpace - REMOVE_SPACE, REMOVE_SPACE);
+            if (bottomSpace > removeSpace) {
+                newEndIndex -= getMoveCount(bottomSpace - removeSpace, removeSpace);
             }
         }
 

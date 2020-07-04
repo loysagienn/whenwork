@@ -10,7 +10,7 @@ const Root = () => (
         <Endless
             className={css.endless}
             ItemComponent={Month}
-            startCount={10}
+            startCount={3}
         />
     </div>
 );
