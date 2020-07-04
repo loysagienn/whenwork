@@ -1,12 +1,17 @@
 /** @jsx createElement */
 
 import { createElement } from 'react';
-import Hello from 'app/components/Hello';
+import Endless from 'app/components/Endless';
+import Month from 'app/components/Month';
 import css from './Root.styl';
 
 const Root = () => (
     <div className={css.root}>
-        <Hello />
+        <Endless
+            className={css.endless}
+            ItemComponent={Month}
+            startCount={3}
+        />
     </div>
 );
 

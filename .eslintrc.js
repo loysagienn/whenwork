@@ -32,6 +32,8 @@ module.exports = {
         indent: ['error', 4],
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
+        'react/prop-types': 'off',
+        'react/sort-comp': 'off',
         'import/prefer-default-export': 'off',
         'no-param-reassign': 'off',
         'react/jsx-filename-extension': [1, { extensions: ['.mjs'] }],
