@@ -1,14 +1,52 @@
 $daySize = 13vmin
+$blueGray900 = #263238
+$blueGray800 = #37474F
+$blueGray500 = #607D8B
+$blueGray400 = #78909C
+$blueGray300 = #90A4AE
+$red300 = #E57373
+$red600 = #E53935
+
+$deepOrange200 = #FFAB91
+$deepOrange500 = #FF5722
+$deepOrange700 = #E64A19
 
 .month
+  padding-bottom: 5vmin
   width: $daySize * 7
-  height: $daySize * 7
   margin: 0 auto
-  border: 1px solid #f0f0f0
-  border-bottom: none
-  font-size: 5vmin
+  font-size: 6vmin
 
 .title
   width: $daySize * 7
-  line-height: $daySize
+  line-height: 12vmin
   text-align: center
+  color: $blueGray800
+  font-weight: 300
+
+.daysTitle
+  display: flex
+
+.dayTitle
+  width: $daySize
+  font-size: 5vmin
+  text-align: center
+  line-height: 11vmin
+  color: $blueGray300
+  font-weight: 300
+  &.isWeekend
+    color: $deepOrange200
+
+.days
+  display: flex
+  flex-wrap: wrap
+
+.day
+  width: $daySize
+  font-size: 5vmin
+  text-align: center
+  line-height: $daySize
+  color: $blueGray800
+  font-weight: 500
+  &.isWeekend
+    color: $deepOrange700

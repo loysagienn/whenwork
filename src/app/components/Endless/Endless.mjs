@@ -4,8 +4,7 @@ import {
     createElement, Component, createRef,
 } from 'react';
 import { cn } from 'app/utils';
-import { addWindowEvent, removeWindoEvent } from 'env/browser';
-import { remove } from 'ramda';
+import { addWindowEvent, removeWindowEvent } from 'env/browser';
 import css from './Endless.styl';
 import Item from './Item';
 
@@ -48,7 +47,7 @@ class Endless extends Component {
     }
 
     componentWillUnmount() {
-        removeWindoEvent('resize', this.onScroll);
+        removeWindowEvent('resize', this.onScroll);
     }
 
     getItemRef(index) {
