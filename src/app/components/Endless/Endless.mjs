@@ -7,7 +7,12 @@ import { cn } from 'app/utils';
 import css from './Endless.styl';
 import Item from './Item';
 
-const RESERVE_SPACE = 300;
+const ADD_SPACE = 300;
+const REMOVE_SPACE = 600;
+const CONTAINER_PADDING = 1000;
+const MAX_MOVE_COUNT = 5;
+
+const getMoveCount = (space, reserve) => Math.min(Math.ceil((space * MAX_MOVE_COUNT) / reserve), MAX_MOVE_COUNT);
 
 class Endless extends Component {
     constructor(props) {
@@ -28,6 +33,9 @@ class Endless extends Component {
     }
 
     componentDidMount() {
+        this.containerRef.current.style.padding = `${CONTAINER_PADDING}px 0`;
+        this.ref.current.scrollTop = CONTAINER_PADDING;
+
         this.saveTopOfFirstItems();
         this.updateIndex();
     }
@@ -72,20 +80,20 @@ class Endless extends Component {
 
         const { offsetHeight, scrollHeight, scrollTop } = this.ref.current;
 
-        const topSpace = scrollTop;
-        const bottomSpace = scrollHeight - offsetHeight - scrollTop;
+        const topSpace = scrollTop - CONTAINER_PADDING;
+        const bottomSpace = scrollHeight - offsetHeight - scrollTop - CONTAINER_PADDING;
 
-        if (bottomSpace < RESERVE_SPACE) {
-            newEndIndex += 1;
+        if (bottomSpace < ADD_SPACE) {
+            newEndIndex += getMoveCount(ADD_SPACE - bottomSpace, ADD_SPACE);
 
-            if (topSpace > RESERVE_SPACE * 2) {
-                newStartIndex += 1;
+            if (topSpace > REMOVE_SPACE) {
+                newStartIndex += getMoveCount(topSpace - REMOVE_SPACE, REMOVE_SPACE);
             }
-        } else if (topSpace < RESERVE_SPACE) {
-            newStartIndex -= 1;
+        } else if (topSpace < ADD_SPACE) {
+            newStartIndex -= getMoveCount(ADD_SPACE - topSpace, ADD_SPACE);
 
-            if (bottomSpace > RESERVE_SPACE * 2) {
-                newEndIndex -= 1;
+            if (bottomSpace > REMOVE_SPACE) {
+                newEndIndex -= getMoveCount(bottomSpace - REMOVE_SPACE, REMOVE_SPACE);
             }
         }
 
@@ -94,7 +102,7 @@ class Endless extends Component {
 
     saveTopOfFirstItems() {
         const { startIndex, endIndex } = this;
-        const toIndex = Math.min(startIndex + 3, endIndex);
+        const toIndex = Math.min(startIndex + MAX_MOVE_COUNT + 1, endIndex);
 
         let top = 0;
 
@@ -111,11 +119,16 @@ class Endless extends Component {
         const { startIndex, savedStartIndex, savedScrollTop } = this;
 
         let newScrollTop = savedScrollTop;
-        const itemRef = this.getItemRef(startIndex);
 
         if (startIndex < savedStartIndex) {
-            newScrollTop += itemRef.current.getHeight();
+            for (let i = startIndex; i < savedStartIndex; i += 1) {
+                const itemRef = this.getItemRef(i);
+
+                newScrollTop += itemRef.current.getHeight();
+            }
         } else if (startIndex > savedStartIndex) {
+            const itemRef = this.getItemRef(startIndex);
+
             newScrollTop -= itemRef.current.getTop();
         }
 
