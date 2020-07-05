@@ -1,3 +1,7 @@
+import { times } from 'ramda';
+
+const oneDayMs = 24 * 60 * 60 * 1000;
+
 const setWeekStart = (date) => {
     let weekDay = date.getDay();
 
@@ -16,7 +20,19 @@ const setWeekStart = (date) => {
 
 const addDay = (date) => date.setDate(date.getDate() + 1);
 
-const getDays = (date) => {
+const isWeekend = (firstWorkDay, timestamp) => {
+    const daysDiff = Math.round((timestamp - firstWorkDay) / oneDayMs);
+
+    let scheduleDiff = daysDiff % 4;
+
+    if (scheduleDiff < 0) {
+        scheduleDiff += 4;
+    }
+
+    return scheduleDiff > 1;
+};
+
+const getDays = (date, firstWorkDay) => {
     // eslint-disable-next-line no-unused-vars
     date = new Date(date.getTime());
 
@@ -38,12 +54,12 @@ const getDays = (date) => {
     }
 
     while (date.getMonth() === month) {
-        const weekDay = date.getDay();
+        const timestamp = date.getTime();
 
         days.push({
             monthDay: date.getDate(),
-            timestamp: date.getTime(),
-            isWeekend: weekDay === 6 || weekDay === 0,
+            timestamp,
+            isWeekend: isWeekend(firstWorkDay, timestamp),
         });
 
         addDay(date);

@@ -11,8 +11,14 @@ $deepOrange200 = #FFAB91
 $deepOrange500 = #FF5722
 $deepOrange700 = #E64A19
 
+$green300 = #81C784
+$green500 = #4CAF50
+$green700 = #388E3C
+
+$white = #ffffff
+
 .month
-  padding-bottom: 5vmin
+  padding: 2vmin 0
   width: $daySize * 7
   margin: 0 auto
   font-size: 6vmin
@@ -27,26 +33,42 @@ $deepOrange700 = #E64A19
 .daysTitle
   display: flex
 
-.dayTitle
-  width: $daySize
-  font-size: 5vmin
-  text-align: center
-  line-height: 11vmin
-  color: $blueGray300
-  font-weight: 300
-  &.isWeekend
-    color: $deepOrange200
+  .dayTitle
+    width: $daySize
+    font-size: 5vmin
+    text-align: center
+    line-height: 11vmin
+    color: $blueGray300
+    font-weight: 300
+    &.isWeekend
+      color: $deepOrange200
 
 .days
   display: flex
   flex-wrap: wrap
 
 .day
+  position: relative
   width: $daySize
-  font-size: 5vmin
-  text-align: center
-  line-height: $daySize
+  height: $daySize
   color: $blueGray800
   font-weight: 500
   &.isWeekend
-    color: $deepOrange700
+    color: $white
+
+  .weekend
+    position: absolute
+    box-sizing: border-box
+    left: 13%
+    top: 13%
+    width: 74%
+    height: 74%
+    border-radius: 100%
+    background-color: $green300
+
+  .dayText
+    position: relative
+    width: $daySize
+    font-size: 5vmin
+    text-align: center
+    line-height: $daySize

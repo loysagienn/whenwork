@@ -13,7 +13,14 @@ const Day = ({ monthDay, isStub, isWeekend }) => {
 
     return (
         <div className={cn(css.day, isWeekend && css.isWeekend)}>
-            {monthDay}
+            {
+                isWeekend && (
+                    <div className={css.weekend} />
+                )
+            }
+            <div className={css.dayText}>
+                {monthDay}
+            </div>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 /** @jsx createElement */
 
 import { createElement } from 'react';
+import { useSelector } from 'react-redux';
+import { selectFirstWorkDay } from 'app/selectors';
 import css from './Month.styl';
 import DaysTitle from './DaysTitle';
 import Days from './Days';
@@ -22,7 +24,7 @@ const getDate = (index) => {
     const date = new Date(currentDate);
 
     date.setMonth(date.getMonth() + index);
-    date.setHours(0, 0, 0, 0);
+    date.setUTCHours(0, 0, 0, 0);
 
     return date;
 };
@@ -39,16 +41,17 @@ const getTitle = (date) => {
     return `${monthName} ${year}`;
 };
 
-const getMonthDate = (index) => {
+const useMonthDate = (index) => {
+    const firstWorkDay = useSelector(selectFirstWorkDay);
     const date = getDate(index);
     const title = getTitle(date);
-    const days = getDays(date);
+    const days = getDays(date, firstWorkDay);
 
     return { title, days };
 };
 
 const Month = ({ index }) => {
-    const { title, days } = getMonthDate(index);
+    const { title, days } = useMonthDate(index);
 
     return (
         <div className={css.month}>
