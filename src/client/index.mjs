@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import { compose } from 'redux';
 
 import { getStore, renderApp } from 'app';
@@ -12,4 +12,4 @@ const appNode = document.getElementById('app');
 
 const store = getStore(initialState, composeEnhancers);
 
-render(renderApp(store), appNode);
+hydrate(renderApp(store), appNode);

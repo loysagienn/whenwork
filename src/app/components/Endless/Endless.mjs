@@ -1,8 +1,6 @@
 /** @jsx createElement */
 
-import {
-    createElement, Component, createRef,
-} from 'react';
+import { createElement, Component, createRef } from 'react';
 import { cn } from 'app/utils';
 import { addWindowEvent, removeWindowEvent } from 'env/browser';
 import css from './Endless.styl';

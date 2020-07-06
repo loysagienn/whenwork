@@ -1,4 +1,10 @@
 $daySize = 13vmin
+$monthPadding = 2vmin
+$titleFontSize = 6vmin
+$daysFontSize = 5vmin
+$titleHeight = 12vmin
+$daysTitleHeight = 11vmin
+
 $blueGray900 = #263238
 $blueGray800 = #37474F
 $blueGray500 = #607D8B
@@ -18,34 +24,36 @@ $green700 = #388E3C
 $white = #ffffff
 
 .month
-  padding: 2vmin 0
+  padding: $monthPadding 0
   width: $daySize * 7
   margin: 0 auto
-  font-size: 6vmin
 
 .title
   width: $daySize * 7
-  line-height: 12vmin
+  line-height: $titleHeight
   text-align: center
   color: $blueGray800
   font-weight: 300
+  font-size: $titleFontSize
 
 .daysTitle
   display: flex
 
-  .dayTitle
-    width: $daySize
-    font-size: 5vmin
-    text-align: center
-    line-height: 11vmin
-    color: $blueGray300
-    font-weight: 300
-    &.isWeekend
-      color: $deepOrange200
+.dayTitle
+  width: $daySize
+  height: $daysTitleHeight
+  text-align: center
+  line-height: $daysTitleHeight
+  font-size: $daysFontSize
+  color: $blueGray300
+  font-weight: 300
+  &.isWeekend
+    color: $deepOrange200
 
 .days
   display: flex
   flex-wrap: wrap
+  font-size: $daysFontSize
 
 .day
   position: relative
@@ -69,6 +77,6 @@ $white = #ffffff
   .dayText
     position: relative
     width: $daySize
-    font-size: 5vmin
+    font-size: $daysFontSize
     text-align: center
     line-height: $daySize
