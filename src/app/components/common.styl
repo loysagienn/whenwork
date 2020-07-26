@@ -43,3 +43,21 @@ $yellow700 = #FBC02D
 $yellow800 = #F9A825
 
 $white = #ffffff
+
+
+rotation(interval = 1s)
+    :global {
+        animation: rotation interval infinite linear
+    }
+
+maxWidth(width)
+    @media all and (max-width: width)
+        {block}
+
+minWidth(width)
+    @media all and (min-width: width)
+        {block}
+
+maxHeight(height)
+    @media all and (max-height: height)
+        {block}

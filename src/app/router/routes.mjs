@@ -23,6 +23,14 @@ export default [
     //     pattern: '/api/log',
     // },
     {
+        id: 'API_SET_FIRST_WORK_DAY',
+        pattern: '/api/set-first-work-day',
+    },
+    {
+        id: 'API_RESET_SCHEDULE',
+        pattern: '/api/reset-schedule',
+    },
+    {
         id: 'NOT_FOUND',
         pattern: '*',
     },

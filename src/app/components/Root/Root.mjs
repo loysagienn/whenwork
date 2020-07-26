@@ -3,8 +3,7 @@
 import { createElement } from 'react';
 import { useSelector } from 'react-redux';
 import { selectFirstWorkDay, selectScheduleType } from 'app/selectors';
-import Endless from 'app/components/Endless';
-import Month from 'app/components/Month';
+import Calendar from 'app/components/Calendar';
 import ScheduleSelector from 'app/components/ScheduleSelector';
 import css from './Root.styl';
 
@@ -19,11 +18,7 @@ const WhenWork = () => {
     }
 
     return (
-        <Endless
-            className={css.endless}
-            ItemComponent={Month}
-            startCount={3}
-        />
+        <Calendar />
     );
 };
 

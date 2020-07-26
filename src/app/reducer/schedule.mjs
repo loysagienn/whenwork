@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'app/utils';
-import { SET_SCHEDULE_TYPE, SET_FIRST_WORK_DAY } from 'app/actions';
+import { SET_SCHEDULE_TYPE, SET_FIRST_WORK_DAY, RESET_SCHEDULE } from 'app/actions';
 
 const type = handleActions({
     [SET_SCHEDULE_TYPE]: (state, scheduleType) => scheduleType,
@@ -8,6 +8,7 @@ const type = handleActions({
 
 const firstWorkDay = handleActions({
     [SET_SCHEDULE_TYPE]: () => null,
+    [RESET_SCHEDULE]: () => null,
     [SET_FIRST_WORK_DAY]: (state, scheduleFirstWorkDay) => scheduleFirstWorkDay,
 }, null);
 

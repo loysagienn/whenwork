@@ -12,9 +12,9 @@ const bundleRoot = '/static/';
 
 const renderAppContent = compose(renderToString, renderApp, getStore);
 
-const render = (initialState) => (
+const render = (initialState, api) => (
     needServerRendering(initialState)
-        ? renderAppContent(initialState)
+        ? renderAppContent(initialState, api)
         : ''
 );
 
@@ -35,7 +35,7 @@ export default (koaCtx) => `<!DOCTYPE html>
     <link rel="icon" type="image/png" href="/static/favicon.png" sizes="32x32">
 </head>
 <body style="${bodyStyle}">
-    <div id="app">${render(koaCtx.state.initialState)}</div>
+    <div id="app">${render(koaCtx.state.initialState, koaCtx.state.api)}</div>
 
     <script src="${CDN_URLS.REACT}"></script>
     <script src="${CDN_URLS.REACT_DOM}"></script>
