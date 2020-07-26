@@ -4,7 +4,9 @@ import { createElement } from 'react';
 import { cn } from 'app/utils';
 import css from './Month.styl';
 
-const Day = ({ monthDay, isStub, isWeekend }) => {
+const Day = ({
+    monthDay, isStub, isWeekend, isToday,
+}) => {
     if (isStub) {
         return (
             <div className={css.day} />
@@ -12,10 +14,15 @@ const Day = ({ monthDay, isStub, isWeekend }) => {
     }
 
     return (
-        <div className={cn(css.day, isWeekend && css.isWeekend)}>
+        <div className={cn(css.day, isWeekend && css.isWeekend, isToday && css.isToday)}>
             {
                 isWeekend && (
                     <div className={css.weekend} />
+                )
+            }
+            {
+                isToday && (
+                    <div className={css.today} />
                 )
             }
             <div className={css.dayText}>

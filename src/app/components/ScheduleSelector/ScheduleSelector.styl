@@ -1,0 +1,42 @@
+@import '../common.styl'
+
+.scheduleSelector
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  display: flex
+  justify-content: center
+  align-items: center
+
+.popup
+  padding: 20px
+
+.title
+  padding-bottom: 3vmin
+  text-align: center
+  font-size: calc(10px + 5vmin)
+  font-weight: 200
+
+.question
+  padding-bottom: 5vmin
+  text-align: center
+  font-size: calc(5px + 4vmin)
+
+.buttons
+  display: flex
+  justify-content: space-around
+  align-items: center
+
+.button
+  box-sizing: border-box
+  min-width: 100px
+  width: 22vmin
+  & + &
+    margin-left: 15px
+
+.today
+  text-align: center
+  padding-top: 4vmin
+  font-size: calc(5px + 3vmin)

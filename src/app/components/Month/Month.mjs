@@ -2,15 +2,12 @@
 
 import { createElement } from 'react';
 import { useSelector } from 'react-redux';
-import { selectFirstWorkDay } from 'app/selectors';
+import { selectFirstWorkDay, selectCurrentIsoDate } from 'app/selectors';
+import { parseDate } from 'app/utils';
 import css from './Month.styl';
 import DaysTitle from './DaysTitle';
 import Days from './Days';
 import getDays from './getDays';
-
-const currentDate = Date.now();
-
-const currentYear = (new Date(currentDate)).getFullYear();
 
 const months = [
     'Январь', 'Февраль',
@@ -20,16 +17,16 @@ const months = [
     'Декабрь',
 ];
 
-const getDate = (index) => {
-    const date = new Date(currentDate);
+const getDate = (currentIsoDate, index) => {
+    const date = parseDate(currentIsoDate);
 
     date.setMonth(date.getMonth() + index);
-    date.setUTCHours(0, 0, 0, 0);
 
     return date;
 };
 
-const getTitle = (date) => {
+const getTitle = (currentIsoDate, date) => {
+    const currentYear = parseDate(currentIsoDate).getFullYear();
     const month = date.getMonth();
     const year = date.getFullYear();
     const monthName = months[month];
@@ -43,9 +40,10 @@ const getTitle = (date) => {
 
 const useMonthDate = (index) => {
     const firstWorkDay = useSelector(selectFirstWorkDay);
-    const date = getDate(index);
-    const title = getTitle(date);
-    const days = getDays(date, firstWorkDay);
+    const currentIsoDate = useSelector(selectCurrentIsoDate);
+    const date = getDate(currentIsoDate, index);
+    const title = getTitle(currentIsoDate, date);
+    const days = getDays(date, currentIsoDate, firstWorkDay);
 
     return { title, days };
 };

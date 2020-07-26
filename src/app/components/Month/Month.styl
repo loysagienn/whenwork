@@ -1,3 +1,5 @@
+@import '../common.styl'
+
 $daySize = 13vmin
 $monthPadding = 2vmin
 $titleFontSize = 6vmin
@@ -5,23 +7,6 @@ $daysFontSize = 5vmin
 $titleHeight = 12vmin
 $daysTitleHeight = 11vmin
 
-$blueGray900 = #263238
-$blueGray800 = #37474F
-$blueGray500 = #607D8B
-$blueGray400 = #78909C
-$blueGray300 = #90A4AE
-$red300 = #E57373
-$red600 = #E53935
-
-$deepOrange200 = #FFAB91
-$deepOrange500 = #FF5722
-$deepOrange700 = #E64A19
-
-$green300 = #81C784
-$green500 = #4CAF50
-$green700 = #388E3C
-
-$white = #ffffff
 
 .month
   padding: $monthPadding 0
@@ -57,12 +42,21 @@ $white = #ffffff
 
 .day
   position: relative
+  box-sizing: border-box
   width: $daySize
   height: $daySize
   color: $blueGray800
   font-weight: 500
+  &.isToday
+    color: $lightBlue500
   &.isWeekend
     color: $white
+    
+    &.isToday
+      color: $white
+    
+    .today
+      border-color: $lightBlue500
 
   .weekend
     position: absolute
@@ -73,6 +67,17 @@ $white = #ffffff
     height: 74%
     border-radius: 100%
     background-color: $green300
+  
+  .today
+    box-sizing: border-box
+    position: absolute
+    box-sizing: border-box
+    left: 12%
+    top: 12%
+    width: 76%
+    height: 76%
+    border-radius: 100%
+    border: 0.7vmin solid $lightBlue500
 
   .dayText
     position: relative

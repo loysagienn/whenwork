@@ -4,18 +4,16 @@ import { compose, always } from 'ramda';
 import { renderApp, getStore } from 'app';
 
 import { CDN_URLS, IS_PRODUCTION } from 'config';
+import needServerRendering from './needServerRendering';
 
 const bodyStyle = 'background-color: #ffffff;';
 
 const bundleRoot = '/static/';
 
-// const serverRenderingOn = always(IS_PRODUCTION);
-const serverRenderingOn = () => false;
-
 const renderAppContent = compose(renderToString, renderApp, getStore);
 
 const render = (initialState) => (
-    serverRenderingOn()
+    needServerRendering(initialState)
         ? renderAppContent(initialState)
         : ''
 );

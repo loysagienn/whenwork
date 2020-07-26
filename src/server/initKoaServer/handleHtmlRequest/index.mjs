@@ -6,6 +6,8 @@ const handleHtmlRequest = async (koaCtx) => {
 
     if (route.id === ROUTES_IDS.NOT_FOUND) {
         koaCtx.status = 404;
+
+        return;
     }
 
     koaCtx.body = renderHtml(koaCtx);

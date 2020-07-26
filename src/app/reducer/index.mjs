@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import color from './color';
-import firstWorkDay from './firstWorkDay';
+import schedule from './schedule';
+import currentIsoDate from './currentIsoDate';
 
 export default combineReducers({
     color,
-    firstWorkDay,
+    schedule,
+    currentIsoDate,
 });

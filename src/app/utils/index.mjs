@@ -15,3 +15,5 @@ export { default as generateId } from './generateId';
 export { default as memoize } from './memoize';
 
 export { default as cn } from './cn';
+
+export * from './date';

@@ -1,4 +1,4 @@
-import { times } from 'ramda';
+import { parseDate } from 'app/utils';
 
 const oneDayMs = 24 * 60 * 60 * 1000;
 
@@ -20,8 +20,8 @@ const setWeekStart = (date) => {
 
 const addDay = (date) => date.setDate(date.getDate() + 1);
 
-const isWeekend = (firstWorkDay, timestamp) => {
-    const daysDiff = Math.round((timestamp - firstWorkDay) / oneDayMs);
+const isWeekend = (firstWorkDayTimestamp, timestamp) => {
+    const daysDiff = Math.round((timestamp - firstWorkDayTimestamp) / oneDayMs);
 
     let scheduleDiff = daysDiff % 4;
 
@@ -32,9 +32,11 @@ const isWeekend = (firstWorkDay, timestamp) => {
     return scheduleDiff > 1;
 };
 
-const getDays = (date, firstWorkDay) => {
+const getDays = (date, currentIsoDate, firstWorkDay) => {
     // eslint-disable-next-line no-unused-vars
     date = new Date(date.getTime());
+    const firstWorkDayTimestamp = parseDate(firstWorkDay).getTime();
+    const currentDateTimestamp = parseDate(currentIsoDate).getTime();
 
     date.setDate(1);
 
@@ -59,7 +61,8 @@ const getDays = (date, firstWorkDay) => {
         days.push({
             monthDay: date.getDate(),
             timestamp,
-            isWeekend: isWeekend(firstWorkDay, timestamp),
+            isWeekend: isWeekend(firstWorkDayTimestamp, timestamp),
+            isToday: currentDateTimestamp === timestamp,
         });
 
         addDay(date);
