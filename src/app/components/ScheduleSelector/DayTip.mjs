@@ -29,7 +29,7 @@ const DayTip = ({ isTomorrow }) => {
     const weekDay = date.getDay();
 
     return (
-        <div className={css.today}>
+        <div className={css.dayTip}>
             {`${isTomorrow ? 'Завтра' : 'Сегодня'} ${monthDay} ${months[month]}, ${weekDays[weekDay]}`}
         </div>
     );

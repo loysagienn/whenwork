@@ -56,6 +56,13 @@ const FirstWorkDaySelector = () => {
             </div>
             <div className={css.question}>
                 {
+                    isTomorrow && (
+                        <div className={css.today}>
+                            {`Сегодня ${workToday === '1' ? 'рабочий' : 'выходной'}`}
+                        </div>
+                    )
+                }
+                {
                     isTomorrow ? 'А завтра рабочий?' : 'Сегодня рабочий день?'
                 }
             </div>
